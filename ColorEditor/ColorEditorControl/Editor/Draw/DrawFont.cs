@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ColorEditorControl.Editor.Draw
 {
-    class DrawFont
+    public class DrawFont
     {
         #region 构造函数
         public DrawFont() :

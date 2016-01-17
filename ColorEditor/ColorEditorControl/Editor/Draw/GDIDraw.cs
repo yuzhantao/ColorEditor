@@ -17,20 +17,14 @@ namespace ColorEditorControl.Editor.Draw
 
         public void DrawChar(string txt, int color, DrawFont font, float x, float y, int angle, IDrawEffect[] effects)
         {
+            Brush br = new SolidBrush(Color.FromArgb(color));
+            Font sysFont = this.DrawFontToSharpFont(font);
             this.m_graphics.DrawString(
                 txt,
-                this.DrawFontToSharpFont(font),
-                new SolidBrush(Color.FromArgb(color)),
+                sysFont,
+                br,
                 new PointF(x, y)
                 );
-
-            //if(effects!= null)
-            //{
-            //    foreach(IDrawEffect effect in effects)
-            //    {
-            //        effect.DrawEffect(null);
-            //    }
-            //}
         }
 
         public void DrawImage(Image img, float srcLeft, float srcTop, float srcRight, float srcBottom, float destWidth, float destHeight, int angle, IDrawEffect[] effects)

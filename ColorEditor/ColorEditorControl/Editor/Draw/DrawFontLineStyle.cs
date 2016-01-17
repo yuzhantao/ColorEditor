@@ -9,7 +9,7 @@ namespace ColorEditorControl.Editor.Draw
     /// <summary>
     /// 绘制字体的线段风格
     /// </summary>
-    enum DrawFontLineStyle
+    public enum DrawFontLineStyle
     {
         /// <summary>
         /// 空线段

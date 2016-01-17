@@ -9,7 +9,7 @@ namespace ColorEditorControl.Editor.Draw
     /// <summary>
     /// 绘制线段的风格
     /// </summary>
-    enum DrawLineStyle
+    public enum DrawLineStyle
     {
         /// <summary>
         /// 实心线

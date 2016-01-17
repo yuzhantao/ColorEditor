@@ -54,12 +54,12 @@
     <Compile Include="Editor\Draw\GDIDraw.cs" />
     <Compile Include="Editor\Draw\IDraw.cs" />
     <Compile Include="Editor\Draw\IDrawEffect.cs" />
-    <Compile Include="Editor\EditorObjects\Char.cs" />
-    <Compile Include="Editor\EditorObjects\EditContent.cs" />
+    <Compile Include="Editor\EditorObjects\EditorChar.cs" />
+    <Compile Include="Editor\EditorObjects\EditorContent.cs" />
     <Compile Include="Editor\EditorObjects\EditorObjectRectangle.cs" />
-    <Compile Include="Editor\EditorObjects\EditArea.cs" />
+    <Compile Include="Editor\EditorObjects\EditorArea.cs" />
     <Compile Include="Editor\IEditorViewPlug.cs" />
-    <Compile Include="Editor\IEditorView.cs" />
+    <Compile Include="Editor\EditorView.cs" />
     <Compile Include="Editor\EditorObjects\EditorObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

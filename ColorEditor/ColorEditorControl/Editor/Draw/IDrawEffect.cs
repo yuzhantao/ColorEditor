@@ -2,7 +2,7 @@
 
 namespace ColorEditorControl.Editor.Draw
 {
-    interface IDrawEffect
+    public interface IDrawEffect
     {
         /// <summary>
         /// 滤镜绘制效果

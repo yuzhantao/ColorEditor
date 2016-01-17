@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using ColorEditorControl.Editor.Draw;
+
 namespace ColorEditorControl.Editor.EditorObjects
 {
-    abstract class EditorObject
+    public abstract class EditorObject
     {
         /// <summary>
         /// 编辑器对象的矩形区域
@@ -16,6 +18,6 @@ namespace ColorEditorControl.Editor.EditorObjects
         /// <summary>
         /// 绘制编辑器对象
         /// </summary>
-        public abstract void Draw();
+        public abstract void Draw(IDraw draw);
     }
 }

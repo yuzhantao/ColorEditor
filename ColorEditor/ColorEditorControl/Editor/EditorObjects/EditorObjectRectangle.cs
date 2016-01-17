@@ -9,38 +9,38 @@ namespace ColorEditorControl.Editor.EditorObjects
     /// <summary>
     /// 编辑器对象区域
     /// </summary>
-    class EditorObjectRectangle
+    public class EditorObjectRectangle
     {
         /// <summary>
         /// 编辑器对象的左边距坐标
         /// </summary>
-        public double Left { get; set; }
+        public float Left { get; set; }
 
         /// <summary>
         /// 编辑器对象上边距的坐标
         /// </summary>
-        public double Top { get; set; }
+        public float Top { get; set; }
 
         /// <summary>
         /// 编辑器对象右边距地坐标
         /// </summary>
-        public double Right { get; set; }
+        public float Right { get; set; }
 
         /// <summary>
         /// 编辑器对象下边距的坐标
         /// </summary>
-        public double Bottom { get; set; }
+        public float Bottom { get; set; }
 
         /// <summary>
         /// 编辑器对象的层索引
         /// </summary>
-        public double LayerIndex { get; set; }
+        public float LayerIndex { get; set; }
 
         /// <summary>
         /// 获取编辑器对象的宽度
         /// </summary>
         /// <returns></returns>
-        public double getWidth()
+        public float GetWidth()
         {
             return Math.Abs(this.Left - this.Right);
         }
@@ -49,9 +49,29 @@ namespace ColorEditorControl.Editor.EditorObjects
         /// 获取编辑器对象的高度
         /// </summary>
         /// <returns></returns>
-        public double getHeight()
+        public float GetHeight()
         {
             return Math.Abs(this.Top - this.Bottom);
+        }
+
+        /// <summary>
+        /// 矩形区域与形参中的区域是否重叠交叉
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="right"></param>
+        /// <param name="bottom"></param>
+        /// <returns></returns>
+        public bool IsCross(float x,float y,float right,float bottom)
+        {
+            bool isCoross = false;
+
+            if (x >= this.Left && y >= this.Top) isCoross = true;
+            else if (right <= this.Right && y >= this.Top) isCoross = true;
+            else if (x >= this.Left && bottom <= this.Bottom) isCoross = true;
+            else if (right <= this.Right && bottom <= this.Bottom) isCoross = true;
+
+            return isCoross;
         }
     }
 }

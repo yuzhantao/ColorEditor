@@ -15,12 +15,12 @@ namespace ColorEditorControl.Editor
         /// 注册插件
         /// </summary>
         /// <param name="view"></param>
-        void Register(IEditorView view);
+        void Register(EditorView view);
 
         /// <summary>
         /// 注销插件
         /// </summary>
         /// <param name="view"></param>
-        void Unregister(IEditorView view);
+        void Unregister(EditorView view);
     }
 }

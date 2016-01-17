@@ -3,31 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ColorEditorControl.Editor.Draw;
 
 namespace ColorEditorControl.Editor.EditorObjects
 {
     /// <summary>
     /// 编辑器的编辑区域
     /// </summary>
-    class EditArea : EditContent
+    public class EditorArea : EditorContent
     {
         /// <summary>
         /// 编辑区域的内容
         /// </summary>
-        public List<EditContent> ContentList;
+        public List<EditorContent> ContentList;
 
-        public override void Draw()
+        public override void Draw(IDraw draw)
         {
-            foreach (EditContent ojb in this.ContentList)
+            foreach (EditorContent ojb in this.ContentList)
             {
-                ojb.Draw();
+                ojb.Draw(draw);
             }
         }
 
         public override string getText()
         {
             StringBuilder sb = new StringBuilder();
-            foreach(EditContent content in this.ContentList)
+            foreach(EditorContent content in this.ContentList)
             {
                 sb.Append(content.getText());
             }

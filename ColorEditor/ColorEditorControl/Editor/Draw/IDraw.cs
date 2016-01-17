@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace ColorEditorControl.Editor.Draw
 {
-    interface IDraw
+    public interface IDraw
     {
         void DrawImage(Image img,
             float srcLeft,
