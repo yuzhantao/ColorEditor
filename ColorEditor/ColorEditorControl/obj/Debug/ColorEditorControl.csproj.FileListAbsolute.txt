@@ -1,0 +1,5 @@
+F:\projects\2016\color editor\current codes\ColorEditor\ColorEditorControl\bin\Debug\ColorEditorControl.dll
+F:\projects\2016\color editor\current codes\ColorEditor\ColorEditorControl\bin\Debug\ColorEditorControl.pdb
+F:\projects\2016\color editor\current codes\ColorEditor\ColorEditorControl\obj\Debug\ColorEditorControl.csprojResolveAssemblyReference.cache
+F:\projects\2016\color editor\current codes\ColorEditor\ColorEditorControl\obj\Debug\ColorEditorControl.dll
+F:\projects\2016\color editor\current codes\ColorEditor\ColorEditorControl\obj\Debug\ColorEditorControl.pdb
