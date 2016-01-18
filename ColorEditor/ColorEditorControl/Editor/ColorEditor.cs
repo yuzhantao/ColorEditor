@@ -21,6 +21,7 @@ namespace ColorEditorControl.Editor
 
         public ColorEditor(EditorView view)
         {
+
             InitializeComponent();
             this.SetStyle(ControlStyles.UserPaint, true);
             this.SetStyle(ControlStyles.ResizeRedraw, true);
@@ -29,9 +30,9 @@ namespace ColorEditorControl.Editor
             this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
 
             this.View = view;
-            this.InsterChar("我",0);
+            this.InsterChar("克路德机器人\n人之初，性本善", 0);
         }
-
+        
         protected override void OnMouseClick(MouseEventArgs e)
         {
             base.OnMouseClick(e);
@@ -41,8 +42,7 @@ namespace ColorEditorControl.Editor
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            if (this.View.DrawGraphic == null) this.View.DrawGraphic = new GDIDraw(e.Graphics);
-            this.View.UpdateDraw();
+            this.View.Draw(new GDIDraw(e.Graphics));
         }
 
         private void InsterChar(string txt,int pos)
@@ -50,7 +50,7 @@ namespace ColorEditorControl.Editor
             DrawFont defFont = new DrawFont(this.Font.FontFamily.Name);
             EditorChar editorChar = new EditorChar(txt, defFont);
             editorChar.Rectangle = new EditorObjectRectangle();
-            this.View.ContentList.Insert(pos, editorChar);
+            this.View.EditorArea.Insert(pos, editorChar);
         }
     }
 }

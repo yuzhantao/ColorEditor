@@ -10,6 +10,11 @@ namespace ColorEditorControl.Editor.EditorObjects
 {
     public abstract class EditorObject
     {
+        public EditorObject()
+        {
+            this.Rectangle = new EditorObjectRectangle();
+        }
+
         /// <summary>
         /// 编辑器对象的矩形区域
         /// </summary>

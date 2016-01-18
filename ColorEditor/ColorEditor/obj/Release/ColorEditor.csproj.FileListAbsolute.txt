@@ -1,0 +1,11 @@
+F:\projects\2016\color editor\current codes\ColorEditor\ColorEditor\bin\Release\ColorEditor.exe.config
+F:\projects\2016\color editor\current codes\ColorEditor\ColorEditor\bin\Release\ColorEditor.exe
+F:\projects\2016\color editor\current codes\ColorEditor\ColorEditor\bin\Release\ColorEditor.pdb
+F:\projects\2016\color editor\current codes\ColorEditor\ColorEditor\bin\Release\ColorEditorControl.dll
+F:\projects\2016\color editor\current codes\ColorEditor\ColorEditor\bin\Release\ColorEditorControl.pdb
+F:\projects\2016\color editor\current codes\ColorEditor\ColorEditor\obj\Release\ColorEditor.csprojResolveAssemblyReference.cache
+F:\projects\2016\color editor\current codes\ColorEditor\ColorEditor\obj\Release\ColorEditor.Form1.resources
+F:\projects\2016\color editor\current codes\ColorEditor\ColorEditor\obj\Release\ColorEditor.Properties.Resources.resources
+F:\projects\2016\color editor\current codes\ColorEditor\ColorEditor\obj\Release\ColorEditor.csproj.GenerateResource.Cache
+F:\projects\2016\color editor\current codes\ColorEditor\ColorEditor\obj\Release\ColorEditor.exe
+F:\projects\2016\color editor\current codes\ColorEditor\ColorEditor\obj\Release\ColorEditor.pdb

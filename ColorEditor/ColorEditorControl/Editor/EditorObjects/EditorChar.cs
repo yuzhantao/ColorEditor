@@ -18,7 +18,7 @@ namespace ColorEditorControl.Editor.EditorObjects
         public EditorChar(string content,DrawFont font)
         {
             this.m_content = content;
-            this.FontColor = 0x000000;
+            this.FontColor = System.Drawing.Color.Black.ToArgb();
             this.Font = font;
         }
 

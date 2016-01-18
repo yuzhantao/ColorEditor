@@ -10,14 +10,16 @@ using ColorEditorControl.Editor.EditorObjects;
 
 namespace ColorEditorControl.Editor
 {
-    public class EditorView
+    public class EditorView:EditorObject
     {
-        public List<EditorContent> ContentList { get; set; }
-        public IDraw DrawGraphic { get; set; }
+        /// <summary>
+        /// 编辑区域
+        /// </summary>
+        public EditorArea EditorArea { set; get; }
         
         public EditorView()
         {
-            this.ContentList = new List<EditorContent>();
+            this.EditorArea = new EditorArea();
         }
 
         /// <summary>
@@ -27,34 +29,13 @@ namespace ColorEditorControl.Editor
         public string getText()
         {
             StringBuilder sb = new StringBuilder();
-            foreach(EditorContent obj in this.ContentList)
-            { 
-                sb.Append(obj.getText());
-            }
+            sb.Append(this.EditorArea.getText());
             return sb.ToString();
         }
 
-        public void UpdateDraw()
+        public override void Draw(IDraw draw)
         {
-            if (this.DrawGraphic == null) return;
-
-            foreach (EditorContent obj in this.ContentList)
-            {
-                obj.Draw(this.DrawGraphic);
-            }
-        }
-
-        public void UpdateDraw(float x, float y)
-        {
-            this.UpdateDraw(x, y, x + 1, y + 1);
-        }
-
-        public void UpdateDraw(float x,float y,float right,float bottom)
-        {
-            foreach (EditorContent obj in this.ContentList)
-            {
-                if(obj.Rectangle.IsCross(x,y,right,bottom)) obj.Draw(this.DrawGraphic);
-            }
+            this.EditorArea.Draw(draw);
         }
     }
 }
