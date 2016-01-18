@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
 
 using ColorEditorControl.Editor.Draw;
 using ColorEditorControl.Editor.EditorObjects;
@@ -17,9 +18,14 @@ namespace ColorEditorControl.Editor
         /// </summary>
         public EditorArea EditorArea { set; get; }
         
-        public EditorView()
+        /// <summary>
+        /// 编辑器视图的构造函数
+        /// </summary>
+        /// <param name="hand">窗体句柄</param>
+        /// <param name="caretBitmap">光标图片</param>
+        public EditorView(IntPtr hand,Bitmap caretBitmap)
         {
-            this.EditorArea = new EditorArea();
+            this.EditorArea = new EditorArea(hand, caretBitmap);        // 初始化编辑器内容区域
         }
 
         /// <summary>

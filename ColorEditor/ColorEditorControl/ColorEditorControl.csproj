@@ -54,6 +54,7 @@
     <Compile Include="Editor\Draw\GDIDraw.cs" />
     <Compile Include="Editor\Draw\IDraw.cs" />
     <Compile Include="Editor\Draw\IDrawEffect.cs" />
+    <Compile Include="Editor\EditorObjects\EditorCaret.cs" />
     <Compile Include="Editor\EditorObjects\EditorChar.cs" />
     <Compile Include="Editor\EditorObjects\EditorContent.cs" />
     <Compile Include="Editor\EditorObjects\EditorObjectRectangle.cs" />
