@@ -16,7 +16,7 @@ namespace ColorEditorControl.Editor
         /// <summary>
         /// 编辑区域
         /// </summary>
-        public EditorArea EditorArea { set; get; }
+        public EditorEditArea EditorArea { set; get; }
         
         /// <summary>
         /// 编辑器视图的构造函数
@@ -25,7 +25,7 @@ namespace ColorEditorControl.Editor
         /// <param name="caretBitmap">光标图片</param>
         public EditorView(IntPtr hand,Bitmap caretBitmap)
         {
-            this.EditorArea = new EditorArea(hand, caretBitmap);        // 初始化编辑器内容区域
+            this.EditorArea = new EditorEditArea(hand, caretBitmap);        // 初始化编辑器内容区域
         }
 
         /// <summary>

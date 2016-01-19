@@ -49,12 +49,7 @@ namespace ColorEditorControl.Editor.EditorObjects
         {
             this.CaretBimap = bmp;
             this.WindowHandle = handle;
-            CreateCaret(this.WindowHandle, IntPtr.Zero, 30, 30);
-        }
-
-        public void Update()
-        {
-            SetCaretPos((int)this.Rectangle.Left, (int)this.Rectangle.Top);
+            CreateCaret(this.WindowHandle, IntPtr.Zero, 5, 20);
         }
 
         public void Show()
@@ -67,6 +62,6 @@ namespace ColorEditorControl.Editor.EditorObjects
             ShowCaret(this.WindowHandle);
         }
 
-        public override void Draw(IDraw draw) { }
+        public override void Draw(IDraw draw) { SetCaretPos((int)this.Rectangle.Left, (int)this.Rectangle.Top); }
     }
 }

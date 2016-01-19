@@ -5,13 +5,14 @@ using System.Text;
 using System.Drawing;
 
 using ColorEditorControl.Editor.Draw;
+using ColorEditorControl.Editor.EditorObjects.ContentHandle;
 
 namespace ColorEditorControl.Editor.EditorObjects
 {
     /// <summary>
     /// 编辑器的编辑区域
     /// </summary>
-    public class EditorArea : EditorContent
+    public class EditorEditArea : EditorContent
     {
         #region 属性
         /// <summary>
@@ -46,7 +47,7 @@ namespace ColorEditorControl.Editor.EditorObjects
 
         #endregion
 
-        public EditorArea(IntPtr handle,Bitmap caretBitmap)
+        public EditorEditArea(IntPtr handle,Bitmap caretBitmap)
         {
             this.ContentList = new List<EditorContent>();       // 初始化区域内容
             this.Caret = new EditorCaret(handle, caretBitmap);          // 设置光标
@@ -72,6 +73,8 @@ namespace ColorEditorControl.Editor.EditorObjects
 
             return sb.ToString();
         }
+
+        #region 内容的增删查改
 
         #region 添加
 
@@ -101,15 +104,8 @@ namespace ColorEditorControl.Editor.EditorObjects
         /// <param name="obj">添加的对象</param>
         public void Insert(int pos, EditorContent obj)
         {
-            if (!this.FilterBackKey(obj))
-            {                           // 过滤退格键
-                this.ContentList.Insert(pos, obj);
-                this.SelectIndex = pos+1;
-
-                if (Math.Abs(this.SelectStart - this.SelectEnd) > 0) this.Remove(this.SelectStart, this.SelectEnd);
-                this.SelectStart = pos;
-                this.SelectEnd = pos;
-            }
+            ContentHandleContext content = new ContentHandleContext();
+            content.Insert(this,pos, obj);
             this.SortContent();
         }
 
@@ -126,35 +122,13 @@ namespace ColorEditorControl.Editor.EditorObjects
             for (int i = 0; i < s.Length; i++)
             {
                 EditorChar newChar = new EditorChar(s.Substring(i, 1), font);       // 生成字符对象
-                if(this.FilterBackKey(newChar)) continue;                           // 过滤退格键
-
                 this.ContentList.Insert(pos, newChar);                              // 添加字符到列表
                 this.SelectIndex = pos;
             }
 
             this.SortContent();
         }
-        
-        /// <summary>
-        /// 过滤退格键
-        /// </summary>
-        /// <param name="content"></param>
-        /// <returns></returns>
-        private bool FilterBackKey(EditorContent content)
-        {
-            if (this.SelectIndex>0 && content.getText() == "\b")
-            {
-                if (this.SelectIndex > 0)
-                {
-                    this.Remove(this.SelectIndex-1, this.SelectIndex);
-                }
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+
         #endregion
 
         #region 移除
@@ -179,8 +153,10 @@ namespace ColorEditorControl.Editor.EditorObjects
         }
         #endregion
 
+        #endregion
+
         /// <summary>
-        /// 排序编辑区域中的内容
+        /// 排序编辑区域中的内容及光标位置
         /// </summary>
         private void SortContent()
         {
@@ -203,6 +179,16 @@ namespace ColorEditorControl.Editor.EditorObjects
                     curLeft = minLeft;
                     curTop += content.Rectangle.GetHeight();
                 }
+            }
+
+            // 设置光标位置
+            if (this.SelectIndex > 0)
+            {
+                EditorContent curContent = this.ContentList[this.SelectIndex-1];
+                this.Caret.Rectangle.Left = curContent.Rectangle.Right;
+                this.Caret.Rectangle.Top = curContent.Rectangle.Top;
+                this.Caret.Draw(null);
+                this.Caret.Show();
             }
         }
 
