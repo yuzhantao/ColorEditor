@@ -47,6 +47,8 @@ namespace ColorEditorControl.Editor.EditorObjects
 
         #endregion
 
+        private IDraw TempDraw;
+
         public EditorEditArea(IntPtr handle,Bitmap caretBitmap)
         {
             this.ContentList = new List<EditorContent>();       // 初始化区域内容
@@ -56,6 +58,12 @@ namespace ColorEditorControl.Editor.EditorObjects
 
         public override void Draw(IDraw draw)
         {
+            if(TempDraw == null)
+            {
+                TempDraw = (IDraw)draw.Clone();
+                this.SortContent();
+            }
+
             foreach (EditorContent ojb in this.ContentList)
             {
                 ojb.Draw(draw);
@@ -105,7 +113,7 @@ namespace ColorEditorControl.Editor.EditorObjects
         public void Insert(int pos, EditorContent obj)
         {
             ContentHandleContext content = new ContentHandleContext();
-            content.Insert(this,pos, obj);
+            content.Input(this,pos, obj);
             this.SortContent();
         }
 
@@ -135,9 +143,9 @@ namespace ColorEditorControl.Editor.EditorObjects
         public void Remove(int start,int end)
         {
             this.ContentList.RemoveRange(start, end - start);
+            this.SelectIndex = start;
             this.SelectStart = start;
             this.SelectEnd = start;
-            this.SelectIndex = start;
             this.SortContent();
         }
         #endregion
@@ -168,9 +176,14 @@ namespace ColorEditorControl.Editor.EditorObjects
             foreach (EditorContent content in this.ContentList)
             {
                 content.Rectangle.Left = curLeft;
-                content.Rectangle.Right = curLeft + 20;
                 content.Rectangle.Top = curTop;
-                content.Rectangle.Bottom = curTop + 20;
+
+                if (content.GetType() == typeof(EditorChar)) {
+                    EditorChar charContent = (EditorChar)content;
+                    SizeF size = TempDraw.GetDrawStringSize(charContent.getText(), charContent.Font);
+                    content.Rectangle.Right = curLeft + size.Width;
+                    content.Rectangle.Bottom = curTop + size.Height;
+                }
 
                 curLeft += content.Rectangle.GetWidth();
 
@@ -185,12 +198,28 @@ namespace ColorEditorControl.Editor.EditorObjects
             if (this.SelectIndex > 0)
             {
                 EditorContent curContent = this.ContentList[this.SelectIndex-1];
-                this.Caret.Rectangle.Left = curContent.Rectangle.Right;
-                this.Caret.Rectangle.Top = curContent.Rectangle.Top;
+                if ("\r" == curContent.getText())
+                {
+                    this.Caret.Rectangle.Left = minLeft;
+                    this.Caret.Rectangle.Top = curContent.Rectangle.Bottom;
+                }
+                else
+                {
+                    this.Caret.Rectangle.Left = curContent.Rectangle.Right;
+                    this.Caret.Rectangle.Top = curContent.Rectangle.Top;
+                }
+                this.Caret.Draw(null);
+                this.Caret.Show();
+            }else if (this.SelectIndex == 0)
+            {
+                this.Caret.Rectangle.Left = this.Rectangle.Left+this.Rectangle.PaddingLeft;
+                this.Caret.Rectangle.Top = this.Rectangle.Top+this.Rectangle.MarginTop;
+
                 this.Caret.Draw(null);
                 this.Caret.Show();
             }
         }
+        
 
     }
 }

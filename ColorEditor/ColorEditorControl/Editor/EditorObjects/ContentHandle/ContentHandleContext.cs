@@ -10,11 +10,11 @@ namespace ColorEditorControl.Editor.EditorObjects.ContentHandle
         private static List<IContentHandle> AllObjectHandleList;
         private IContentHandle m_objectHandle;
 
-        public bool Insert(EditorEditArea area,int pos, EditorContent content)
+        public bool Input(EditorEditArea area,int pos, EditorContent content)
         {
             foreach(IContentHandle obj in this.GetAllObjectHandleList())
             {
-                if (obj.Insert(area,pos, content))
+                if (obj.Input(area,pos, content))
                 {
                     return true;
                 }
@@ -33,6 +33,9 @@ namespace ColorEditorControl.Editor.EditorObjects.ContentHandle
                 AllObjectHandleList.Add(new BackspaceKeyHandle());
                 AllObjectHandleList.Add(new LeftKeyHandle());
                 AllObjectHandleList.Add(new RightKeyHandle());
+                AllObjectHandleList.Add(new MouseDownHandle());
+                AllObjectHandleList.Add(new UpKeyHandle());
+                AllObjectHandleList.Add(new DownKeyHandle());
             }
 
             return AllObjectHandleList;

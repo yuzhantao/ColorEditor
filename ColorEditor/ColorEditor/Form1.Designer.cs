@@ -33,17 +33,18 @@
             // 
             // colorEditor1
             // 
+            this.colorEditor1.BackgroundImage = global::ColorEditor.Properties.Resources.background;
             this.colorEditor1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.colorEditor1.Location = new System.Drawing.Point(0, 0);
             this.colorEditor1.Name = "colorEditor1";
-            this.colorEditor1.Size = new System.Drawing.Size(284, 261);
+            this.colorEditor1.Size = new System.Drawing.Size(337, 309);
             this.colorEditor1.TabIndex = 0;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(337, 309);
             this.Controls.Add(this.colorEditor1);
             this.Name = "Form1";
             this.Text = "Form1";

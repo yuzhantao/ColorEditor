@@ -26,7 +26,9 @@ namespace ColorEditorControl.Editor
         private const int WM_SYSCOMMAND = 0x0112;                       // 系统按键
         private const int WM_KEYDOWN = 0x100;                           // 按键点下
         private const int WM_KEYUP = 0x101;                             // 按键抬起
-
+        private const int WM_MOUSEDOWN = 0x0210;                        // 鼠标点下
+        private const int WM_MOUSEWHEEL = 0x020A;                       // 鼠标中轮滚动
+        private const int WM_LEFTMOUSEDOWN = 0x201;                     //定义了鼠标的左键点击消息
         [DllImport("Imm32.dll")]
         private static extern IntPtr ImmGetContext(IntPtr hWnd);
 
@@ -78,52 +80,24 @@ namespace ColorEditorControl.Editor
         /// 处理windows消息
         /// </summary>
         /// <param name="m"></param>
-        protected override void WndProc(ref Message m)
+        protected override void WndProc(ref Message msg)
         {
-            base.WndProc(ref m);
+            base.WndProc(ref msg);
 
-            if (m.Msg == WM_HSCROLL || m.Msg == WM_VSCROLL)
-                if (m.WParam.ToInt32() != SB_ENDSCROLL)
+            if (msg.Msg == WM_HSCROLL || msg.Msg == WM_VSCROLL)
+                if (msg.WParam.ToInt32() != SB_ENDSCROLL)
                     Invalidate();
-            
-            //switch (m.Msg)
-            //{
-            //    // 设置handle窗口可以接收输入法的消息
-            //    case WM_IME_SETCONTEXT:                     
-            //        if (m.WParam.ToInt32() == 1) ImmAssociateContext(Handle, m_pImmGetContext);
-            //        break;
-            //    case WM_KEYUP:
-            //        KeyEventArgs keyE = new KeyEventArgs(((Keys)((int)((long)m.WParam))) | ModifierKeys); 
-            //        this.AddKey((char)keyE.KeyData);        // 添加按键到编辑器
-            //        break;
-            //    // 处理接收到的字符
-            //    case WM_CHAR:                               
-            //        KeyEventArgs charE = new KeyEventArgs(((Keys)((int)((long)m.WParam))) | ModifierKeys);
-            //        char charData = (char)charE.KeyData;    // 获取英文或数字
-            //        this.AddChar(charData.ToString());      // 添加字符到编辑器
-            //        this.Invalidate();
-            //        break;
-            //    // 处理接收到的输入法传过来的字符
-            //    case WM_IME_CHAR:                           
-            //        if (m.WParam.ToInt32() == PM_REMOVE)    //如果不做这个判断.会打印出重复的中文 
-            //        {
-            //            this.AddImmToEditorArea();          // 添加字符到编辑器
-            //        }
-            //        break;
-            //}
-        }
 
-        public override bool PreProcessMessage(ref Message msg)
-        {
             switch (msg.Msg)
             {
                 // 设置handle窗口可以接收输入法的消息
                 case WM_IME_SETCONTEXT:
                     if (msg.WParam.ToInt32() == 1) ImmAssociateContext(Handle, m_pImmGetContext);
                     break;
-                case WM_KEYUP:
-                    KeyEventArgs keyE = new KeyEventArgs(((Keys)((int)((long)msg.WParam))) | ModifierKeys);
-                    this.AddKey((char)keyE.KeyData);        // 添加按键到编辑器
+                case WM_LEFTMOUSEDOWN:
+                    int x = this.GetXLparam(msg.LParam);
+                    int y = this.GetYLparam(msg.LParam);
+                    this.AddMouse(EditorMouse.MouseKeyType.Left, x, y);        // 添加按键到编辑器
                     break;
                 // 处理接收到的字符
                 case WM_CHAR:
@@ -138,6 +112,17 @@ namespace ColorEditorControl.Editor
                     {
                         this.AddImmToEditorArea();          // 添加字符到编辑器
                     }
+                    break;
+            }
+        }
+
+        public override bool PreProcessMessage(ref Message msg)
+        {
+            switch (msg.Msg)
+            {
+                case WM_KEYDOWN:
+                    KeyEventArgs keyE = new KeyEventArgs(((Keys)((int)((long)msg.WParam))) | ModifierKeys);
+                    this.AddKey((char)keyE.KeyData);        // 添加按键到编辑器
                     break;
             }
 
@@ -170,11 +155,21 @@ namespace ColorEditorControl.Editor
             this.Invalidate();
         }
 
+        /// <summary>
+        /// 添加字符
+        /// </summary>
+        /// <param name="txt"></param>
         private void AddChar(string txt)
         {
             DrawFont defFont = new DrawFont(this.Font.FontFamily.Name);
             EditorChar editorChar = new EditorChar(txt, defFont);
             this.View.EditorArea.Add(editorChar);
+        }
+
+        private void AddMouse(EditorMouse.MouseKeyType keyType, float x,float y)
+        {
+            EditorMouse editorMouse = new EditorMouse(keyType, x, y);
+            this.View.EditorArea.Add(editorMouse);
         }
 
         /// <summary>
@@ -195,6 +190,25 @@ namespace ColorEditorControl.Editor
             this.View.EditorArea.Insert(pos, editorChar);
         }
 
+        /// <summary>
+        /// 根据lParam获取x坐标
+        /// </summary>
+        /// <param name="lParam"></param>
+        /// <returns></returns>
+        public int GetXLparam(IntPtr lParam)
+        {
+            return (lParam.ToInt32() & 0xffff);
+        }
+
+        /// <summary>
+        /// 根据lParam获取y坐标
+        /// </summary>
+        /// <param name="lParam"></param>
+        /// <returns></returns>
+        public int GetYLparam(IntPtr lParam)
+        {
+            return (lParam.ToInt32() >> 16);
+        }
         #endregion
     }
 }

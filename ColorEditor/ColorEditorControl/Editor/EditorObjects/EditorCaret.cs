@@ -49,7 +49,7 @@ namespace ColorEditorControl.Editor.EditorObjects
         {
             this.CaretBimap = bmp;
             this.WindowHandle = handle;
-            CreateCaret(this.WindowHandle, IntPtr.Zero, 5, 20);
+            CreateCaret(this.WindowHandle, IntPtr.Zero, 2, 20);
         }
 
         public void Show()

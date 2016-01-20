@@ -15,6 +15,13 @@ namespace ColorEditorControl.Editor.Draw
             this.m_graphics = gh;
         }
 
+        public object Clone()
+        {
+            Graphics gs = Graphics.FromImage(new Bitmap(999, 999));
+            IDraw draw = new GDIDraw(gs);
+            return draw;
+        }
+
         public void DrawChar(string txt, int color, DrawFont font, float x, float y, int angle, IDrawEffect[] effects)
         {
             Brush br = new SolidBrush(Color.FromArgb(color));
@@ -25,6 +32,11 @@ namespace ColorEditorControl.Editor.Draw
                 br,
                 new PointF(x, y)
                 );
+
+#if DEBUG
+            SizeF size = this.GetDrawStringSize(txt, font);
+            this.m_graphics.DrawRectangle(new Pen(Color.Red), x, y, size.Width, size.Height);
+#endif
         }
 
         public void DrawImage(Image img, float srcLeft, float srcTop, float srcRight, float srcBottom, float destWidth, float destHeight, int angle, IDrawEffect[] effects)
@@ -45,6 +57,12 @@ namespace ColorEditorControl.Editor.Draw
         public void FillRectangle(int color, float x1, float y1, float x2, float y2, IDrawEffect[] effects)
         {
             throw new NotImplementedException();
+        }
+
+        public SizeF GetDrawStringSize(string str, DrawFont font)
+        {
+            SizeF retSize = this.m_graphics.MeasureString(str,  this.DrawFontToSharpFont(font));
+            return retSize;
         }
 
         /// <summary>

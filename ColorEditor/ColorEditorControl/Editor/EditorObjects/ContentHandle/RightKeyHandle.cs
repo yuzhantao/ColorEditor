@@ -8,7 +8,7 @@ namespace ColorEditorControl.Editor.EditorObjects.ContentHandle
 {
     class RightKeyHandle : IContentHandle
     {
-        public bool Insert(EditorEditArea area, int pos, EditorContent content)
+        public bool Input(EditorEditArea area, int pos, EditorContent content)
         {
             if (content == null || content.getText() != ((char)39).ToString()) return false;
 

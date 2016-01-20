@@ -3,8 +3,10 @@ using System.Drawing;
 
 namespace ColorEditorControl.Editor.Draw
 {
-    public interface IDraw
+    public interface IDraw:ICloneable
     {
+        SizeF GetDrawStringSize(string str,DrawFont font);
+
         void DrawImage(Image img,
             float srcLeft,
             float srcTop,

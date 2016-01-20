@@ -76,10 +76,9 @@ namespace ColorEditorControl.Editor.EditorObjects
         {
             bool isCoross = false;
 
-            if (x >= this.Left && y >= this.Top) isCoross = true;
-            else if (right <= this.Right && y >= this.Top) isCoross = true;
-            else if (x >= this.Left && bottom <= this.Bottom) isCoross = true;
-            else if (right <= this.Right && bottom <= this.Bottom) isCoross = true;
+            System.Drawing.RectangleF srcRect = new System.Drawing.RectangleF(this.Left, this.Top, this.GetWidth(), this.GetHashCode());
+            System.Drawing.RectangleF destRect = new System.Drawing.RectangleF(x, y, right, bottom);
+            if (srcRect.IntersectsWith(destRect)) isCoross = true;
 
             return isCoross;
         }
