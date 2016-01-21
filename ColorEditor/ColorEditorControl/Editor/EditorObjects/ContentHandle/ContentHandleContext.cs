@@ -10,17 +10,12 @@ namespace ColorEditorControl.Editor.EditorObjects.ContentHandle
         private static List<IContentHandle> AllObjectHandleList;
         private IContentHandle m_objectHandle;
 
-        public bool Input(EditorEditArea area,int pos, EditorContent content)
+        public void Input(EditorEditArea area,int pos, EditorContent content)
         {
             foreach(IContentHandle obj in this.GetAllObjectHandleList())
             {
-                if (obj.Input(area,pos, content))
-                {
-                    return true;
-                }
+                obj.Input(area, pos, content);
             }
-
-            return false;
         }
 
         private List<IContentHandle> GetAllObjectHandleList()
@@ -36,6 +31,7 @@ namespace ColorEditorControl.Editor.EditorObjects.ContentHandle
                 AllObjectHandleList.Add(new MouseDownHandle());
                 AllObjectHandleList.Add(new UpKeyHandle());
                 AllObjectHandleList.Add(new DownKeyHandle());
+                AllObjectHandleList.Add(new ImageHandle());
             }
 
             return AllObjectHandleList;

@@ -8,13 +8,11 @@ namespace ColorEditorControl.Editor.EditorObjects.ContentHandle
 {
     class DownKeyHandle : IContentHandle
     {
-        public bool Input(EditorEditArea area, int pos, EditorContent content)
+        public void Input(EditorEditArea area, int pos, EditorContent content)
         {
-            if (content == null || content.getText() != ((char)40).ToString()) return false;
+            if (content == null || content.getText() != ((char)40).ToString()) return;
 
             this.EditorSelectIndexDownMove(area, content);        // 当按向下按钮时，编辑器的选择索引下移一行。
-
-            return true;
         }
 
         /// <summary>
@@ -48,7 +46,7 @@ namespace ColorEditorControl.Editor.EditorObjects.ContentHandle
 
                 if (!isInDownLine) continue;
 
-                if (cnt.Rectangle.IsCross(area.Caret.Rectangle.Left, cnt.Rectangle.Bottom, 1, 1))
+                if (cnt.Rectangle.IsCross(area.Caret.Rectangle.Left, cnt.Rectangle.Top, 1, 1))
                 {
                     area.SelectIndex = i-1;
                     break;

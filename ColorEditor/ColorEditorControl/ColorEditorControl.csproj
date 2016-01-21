@@ -56,6 +56,7 @@
     <Compile Include="Editor\Draw\IDrawEffect.cs" />
     <Compile Include="Editor\EditorObjects\ContentHandle\BackspaceKeyHandle.cs" />
     <Compile Include="Editor\EditorObjects\ContentHandle\DownKeyHandle.cs" />
+    <Compile Include="Editor\EditorObjects\ContentHandle\ImageHandle.cs" />
     <Compile Include="Editor\EditorObjects\ContentHandle\LeftKeyHandle.cs" />
     <Compile Include="Editor\EditorObjects\ContentHandle\MouseDownHandle.cs" />
     <Compile Include="Editor\EditorObjects\ContentHandle\RightKeyHandle.cs" />
@@ -63,7 +64,9 @@
     <Compile Include="Editor\EditorObjects\EditorCaret.cs" />
     <Compile Include="Editor\EditorObjects\EditorChar.cs" />
     <Compile Include="Editor\EditorObjects\EditorContent.cs" />
+    <Compile Include="Editor\EditorObjects\EditorImage.cs" />
     <Compile Include="Editor\EditorObjects\EditorKey.cs" />
+    <Compile Include="Editor\EditorObjects\EditorLine.cs" />
     <Compile Include="Editor\EditorObjects\EditorMouse.cs" />
     <Compile Include="Editor\EditorObjects\EditorObjectRectangle.cs" />
     <Compile Include="Editor\EditorObjects\EditorEditArea.cs" />

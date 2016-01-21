@@ -24,13 +24,14 @@ namespace ColorEditorControl.Editor.EditorObjects
         /// <summary>
         /// 编辑器对象右边距地坐标
         /// </summary>
-        public float Right { get; set; }
+        //public float Right { get; set; }
 
-        /// <summary>
-        /// 编辑器对象下边距的坐标
-        /// </summary>
-        public float Bottom { get; set; }
-
+        ///// <summary>
+        ///// 编辑器对象下边距的坐标
+        ///// </summary>
+        //public float Bottom { get; set; }
+        public float Width { get; set; }
+        public float Height { get; set; }
         public float MarginLeft { get; set; }
         public float MarginTop { get; set; }
         public float MarginRight { get; set; }
@@ -50,19 +51,19 @@ namespace ColorEditorControl.Editor.EditorObjects
         /// 获取编辑器对象的宽度
         /// </summary>
         /// <returns></returns>
-        public float GetWidth()
-        {
-            return Math.Abs(this.Left - this.Right);
-        }
+        //public float GetWidth()
+        //{
+        //    return Math.Abs(this.Left - this.Right);
+        //}
 
-        /// <summary>
-        /// 获取编辑器对象的高度
-        /// </summary>
-        /// <returns></returns>
-        public float GetHeight()
-        {
-            return Math.Abs(this.Top - this.Bottom);
-        }
+        ///// <summary>
+        ///// 获取编辑器对象的高度
+        ///// </summary>
+        ///// <returns></returns>
+        //public float GetHeight()
+        //{
+        //    return Math.Abs(this.Top - this.Bottom);
+        //}
 
         /// <summary>
         /// 矩形区域与形参中的区域是否重叠交叉
@@ -76,7 +77,7 @@ namespace ColorEditorControl.Editor.EditorObjects
         {
             bool isCoross = false;
 
-            System.Drawing.RectangleF srcRect = new System.Drawing.RectangleF(this.Left, this.Top, this.GetWidth(), this.GetHashCode());
+            System.Drawing.RectangleF srcRect = new System.Drawing.RectangleF(this.Left, this.Top, this.Width, this.Height);
             System.Drawing.RectangleF destRect = new System.Drawing.RectangleF(x, y, right, bottom);
             if (srcRect.IntersectsWith(destRect)) isCoross = true;
 

@@ -7,14 +7,16 @@ namespace ColorEditorControl.Editor.Draw
     {
         SizeF GetDrawStringSize(string str,DrawFont font);
 
-        void DrawImage(Image img,
-            float srcLeft,
-            float srcTop,
-            float srcRight, 
-            float srcBottom, 
-            float destWidth,
-            float destHeight,
-            int angle,
+        void DrawImage(Image img, 
+            float srcX, 
+            float srcY, 
+            float srcWidth, 
+            float srcHeight, 
+            float destX, 
+            float destY, 
+            float destWidth, 
+            float destHeight, 
+            int angle, 
             IDrawEffect[] effects);
 
         void DrawChar(

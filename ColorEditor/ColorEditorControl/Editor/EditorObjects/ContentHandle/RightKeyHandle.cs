@@ -8,12 +8,11 @@ namespace ColorEditorControl.Editor.EditorObjects.ContentHandle
 {
     class RightKeyHandle : IContentHandle
     {
-        public bool Input(EditorEditArea area, int pos, EditorContent content)
+        public void Input(EditorEditArea area, int pos, EditorContent content)
         {
-            if (content == null || content.getText() != ((char)39).ToString()) return false;
+            if (content == null || content.getText() != ((char)39).ToString()) return;
 
             area.SelectIndex = Math.Min(area.ContentList.Count(), pos + 1);
-            return true;
         }
     }
 }

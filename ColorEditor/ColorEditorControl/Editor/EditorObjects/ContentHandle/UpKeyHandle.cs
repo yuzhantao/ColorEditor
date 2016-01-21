@@ -8,13 +8,11 @@ namespace ColorEditorControl.Editor.EditorObjects.ContentHandle
 {
     class UpKeyHandle : IContentHandle
     {
-        public bool Input(EditorEditArea area, int pos, EditorContent content)
+        public void Input(EditorEditArea area, int pos, EditorContent content)
         {
-            if (content == null || content.getText() != ((char)38).ToString()) return false;
+            if (content == null || content.getText() != ((char)38).ToString()) return;
 
             this.EditorSelectIndexUpMove(area, content);        // 当按向上按钮时，编辑器的选择索引上移一行。
-
-            return true;
         }
 
         /// <summary>
@@ -50,7 +48,7 @@ namespace ColorEditorControl.Editor.EditorObjects.ContentHandle
                     continue;
                 }
 
-                if (cnt.Rectangle.IsCross(area.Caret.Rectangle.Left, cnt.Rectangle.Bottom, 1, 1))
+                if (cnt.Rectangle.IsCross(area.Caret.Rectangle.Left, cnt.Rectangle.Top+cnt.Rectangle.Height, 1, 1))
                 {
                     area.SelectIndex = i - 1;
                     break;

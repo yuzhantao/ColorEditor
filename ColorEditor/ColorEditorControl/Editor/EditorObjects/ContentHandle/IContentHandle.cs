@@ -11,6 +11,6 @@ namespace ColorEditorControl.Editor.EditorObjects.ContentHandle
         /// <param name="pos"></param>
         /// <param name="content"></param>
         /// <returns></returns>
-        bool Input(EditorEditArea area,int pos,EditorContent content);
+        void Input(EditorEditArea area,int pos,EditorContent content);
     }
 }

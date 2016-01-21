@@ -168,58 +168,116 @@ namespace ColorEditorControl.Editor.EditorObjects
         /// </summary>
         private void SortContent()
         {
+            this.SetEditorContentsPos();                // 设置编辑内容的位置
+
+            this.SetCaretPos();                         // 设置光标位置
+        }
+
+        /// <summary>
+        /// 设置编辑内容的配置
+        /// </summary>
+        private void SetEditorContentsPos()
+        {
             float minLeft = this.Rectangle.Left + this.Rectangle.MarginLeft;
             float minTop = this.Rectangle.Top + this.Rectangle.MarginTop;
 
             float curLeft = minLeft;
             float curTop = minTop;
+            float curLineMaxHeight = 0;                  // 当前行最大高度
+
+            int currentIndex = -1;
+            // 设置每个编辑内容的位置
             foreach (EditorContent content in this.ContentList)
             {
-                content.Rectangle.Left = curLeft;
-                content.Rectangle.Top = curTop;
+                currentIndex++;                                             // 当前索引
 
-                if (content.GetType() == typeof(EditorChar)) {
-                    EditorChar charContent = (EditorChar)content;
-                    SizeF size = TempDraw.GetDrawStringSize(charContent.getText(), charContent.Font);
-                    content.Rectangle.Right = curLeft + size.Width;
-                    content.Rectangle.Bottom = curTop + size.Height;
-                }
-
-                curLeft += content.Rectangle.GetWidth();
-
-                if ("\r"==content.getText())
+                // 计算当前行的最大高度
+                if (curLineMaxHeight == 0)
                 {
                     curLeft = minLeft;
-                    curTop += content.Rectangle.GetHeight();
+                    curTop += curLineMaxHeight;
+
+                    curLineMaxHeight = 0;
+                    for (int i = currentIndex; i < this.ContentList.Count(); i++)
+                    {
+                        if (this.ContentList[i].GetType() == typeof(EditorImage))
+                        {
+                            string dd = "";
+                        }
+
+                        curLineMaxHeight = Math.Max(curLineMaxHeight, this.ContentList[i].Rectangle.Height);
+
+
+                        if(i==this.ContentList.Count()-1 || this.ContentList[i].getText() == "\r")
+                        {
+                            break;
+                        }
+                    }
+                }
+
+                
+
+                if (content.GetType() == typeof(EditorChar))
+                {
+                    EditorChar charContent = (EditorChar)content;
+                    SizeF size = TempDraw.GetDrawStringSize(charContent.getText(), charContent.Font);
+                    content.Rectangle.Width = size.Width;
+                    content.Rectangle.Height = size.Height;
+                }
+
+                content.Rectangle.Left = curLeft;
+                content.Rectangle.Top = curTop+curLineMaxHeight-content.Rectangle.Height;               // 设置每行字符底端对齐
+
+                curLeft += content.Rectangle.Width;
+
+                if ("\r" == content.getText())
+                {
+                    curLeft = minLeft;                                  // 计算换行后最左边的坐标
+                    curTop += curLineMaxHeight;                         // 计算回车换行后的top坐标值
+                    curLineMaxHeight = 0;
                 }
             }
-
-            // 设置光标位置
+        }
+        
+        /// <summary>
+        /// 设置光标位置
+        /// </summary>
+        private void SetCaretPos()
+        {
+            float minLeft = this.Rectangle.Left + this.Rectangle.MarginLeft;
             if (this.SelectIndex > 0)
             {
-                EditorContent curContent = this.ContentList[this.SelectIndex-1];
+                EditorContent curContent = this.ContentList[this.SelectIndex - 1];
                 if ("\r" == curContent.getText())
                 {
                     this.Caret.Rectangle.Left = minLeft;
-                    this.Caret.Rectangle.Top = curContent.Rectangle.Bottom;
+                    this.Caret.Rectangle.Top = curContent.Rectangle.Top + curContent.Rectangle.Height;
                 }
                 else
                 {
-                    this.Caret.Rectangle.Left = curContent.Rectangle.Right;
+                    this.Caret.Rectangle.Left = curContent.Rectangle.Left + curContent.Rectangle.Width;
                     this.Caret.Rectangle.Top = curContent.Rectangle.Top;
                 }
+
+                this.Caret.Rectangle.Height = curContent.Rectangle.Height;
                 this.Caret.Draw(null);
                 this.Caret.Show();
-            }else if (this.SelectIndex == 0)
+            }
+            else if (this.SelectIndex <= 0)
             {
-                this.Caret.Rectangle.Left = this.Rectangle.Left+this.Rectangle.PaddingLeft;
-                this.Caret.Rectangle.Top = this.Rectangle.Top+this.Rectangle.MarginTop;
-
+                this.Caret.Rectangle.Left = this.Rectangle.Left + this.Rectangle.PaddingLeft;
+                this.Caret.Rectangle.Top = this.Rectangle.Top + this.Rectangle.MarginTop;
+                if (this.ContentList.Count > 0)
+                {
+                    this.Caret.Rectangle.Height = this.ContentList[0].Rectangle.Height;
+                }
+                else
+                {
+                    this.Caret.Rectangle.Height = 20;
+                }
                 this.Caret.Draw(null);
                 this.Caret.Show();
             }
         }
-        
-
     }
 }

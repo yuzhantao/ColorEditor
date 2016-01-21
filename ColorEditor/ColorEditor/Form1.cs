@@ -16,5 +16,20 @@ namespace ColorEditor
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// 插入图片
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tbInsertImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                Image img = Bitmap.FromFile(ofd.FileName);
+                colorEditor1.Insert(img);
+            }
+        }
     }
 }

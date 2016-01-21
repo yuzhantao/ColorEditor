@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorEditor", "ColorEditor\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorEditorControl", "ColorEditorControl\ColorEditorControl.csproj", "{ED85D25E-147D-4CC4-BCAE-7745EAFC0C63}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorVersionControl", "ColorVersionControl\ColorVersionControl.csproj", "{CFF9A28C-2086-42E4-A72F-DCA2AB8BBA06}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{ED85D25E-147D-4CC4-BCAE-7745EAFC0C63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED85D25E-147D-4CC4-BCAE-7745EAFC0C63}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED85D25E-147D-4CC4-BCAE-7745EAFC0C63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFF9A28C-2086-42E4-A72F-DCA2AB8BBA06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFF9A28C-2086-42E4-A72F-DCA2AB8BBA06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFF9A28C-2086-42E4-A72F-DCA2AB8BBA06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFF9A28C-2086-42E4-A72F-DCA2AB8BBA06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

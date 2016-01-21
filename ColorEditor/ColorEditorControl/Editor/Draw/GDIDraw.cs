@@ -34,14 +34,15 @@ namespace ColorEditorControl.Editor.Draw
                 );
 
 #if DEBUG
-            SizeF size = this.GetDrawStringSize(txt, font);
-            this.m_graphics.DrawRectangle(new Pen(Color.Red), x, y, size.Width, size.Height);
+            // 绘制字符边距
+            //SizeF size = this.GetDrawStringSize(txt, font);
+            //this.m_graphics.DrawRectangle(new Pen(Color.Red), x, y, size.Width, size.Height);
 #endif
         }
 
-        public void DrawImage(Image img, float srcLeft, float srcTop, float srcRight, float srcBottom, float destWidth, float destHeight, int angle, IDrawEffect[] effects)
+        public void DrawImage(Image img, float srcX, float srcY, float srcWidth, float srcHeight,float destX,float destY, float destWidth, float destHeight, int angle, IDrawEffect[] effects)
         {
-            throw new NotImplementedException();
+            this.m_graphics.DrawImage(img, new RectangleF(destX, destY, destWidth, destHeight), new RectangleF(srcY, srcY, srcWidth, srcHeight),GraphicsUnit.Pixel);
         }
 
         public void DrawLine(int width, int color, float x1, float y1, float x2, float y2, DrawLineStyle lineStyle, IDrawEffect[] effects)

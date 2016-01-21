@@ -11,15 +11,12 @@ namespace ColorEditorControl.Editor.EditorObjects.ContentHandle
     /// </summary>
     class MouseDownHandle : IContentHandle
     {
-        public bool Input(EditorEditArea area, int pos, EditorContent content)
+        public void Input(EditorEditArea area, int pos, EditorContent content)
         {
             if (content.GetType() == typeof(EditorMouse))
             {
                 this.SetCaretPos(area,content.Rectangle.Left, content.Rectangle.Top);        // 设置光标位置
-                return true;
             }
-
-            return false;
         }
 
         /// <summary>
@@ -36,6 +33,7 @@ namespace ColorEditorControl.Editor.EditorObjects.ContentHandle
                 if (content.Rectangle.IsCross(x, y, 1, 1))
                 {
                     area.SelectIndex = index + 1;
+                    break;
                 }
                 index++;
             }

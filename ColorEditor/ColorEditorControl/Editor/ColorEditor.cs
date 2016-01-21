@@ -2,6 +2,7 @@
 using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Drawing;
 
 using ColorEditorControl.Editor.Draw;
 using ColorEditorControl.Editor.EditorObjects;
@@ -208,6 +209,20 @@ namespace ColorEditorControl.Editor
         public int GetYLparam(IntPtr lParam)
         {
             return (lParam.ToInt32() >> 16);
+        }
+        #endregion
+
+        #region 公有函数
+        /// <summary>
+        /// 插入图片
+        /// </summary>
+        /// <param name="img"></param>
+        public void Insert(Image img)
+        {
+            EditorImage editorImage = new EditorImage(img);
+            this.View.EditorArea.Add(editorImage);              // 添加图像对象
+
+            this.Invalidate();                                  // 刷新界面
         }
         #endregion
     }

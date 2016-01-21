@@ -6,16 +6,14 @@ using System.Threading.Tasks;
 
 namespace ColorEditorControl.Editor.EditorObjects.ContentHandle
 {
-    /// <summary>
-    /// 左键处理
-    /// </summary>
-    class LeftKeyHandle : IContentHandle
+    class ImageHandle : IContentHandle
     {
         public void Input(EditorEditArea area, int pos, EditorContent content)
         {
-            if (content == null || content.getText() != ((char)37).ToString()) return;
+            if (content == null || content.GetType() != typeof(EditorImage)) return;
 
-            area.SelectIndex = Math.Max(0,pos - 1);
+            area.ContentList.Insert(area.SelectIndex, content);
+            area.SelectIndex = pos + 1;
         }
     }
 }

@@ -62,6 +62,9 @@ namespace ColorEditorControl.Editor.EditorObjects
             ShowCaret(this.WindowHandle);
         }
 
-        public override void Draw(IDraw draw) { SetCaretPos((int)this.Rectangle.Left, (int)this.Rectangle.Top); }
+        public override void Draw(IDraw draw) {
+            CreateCaret(this.WindowHandle, IntPtr.Zero, (int)this.Rectangle.Width, (int)this.Rectangle.Height);
+            SetCaretPos((int)this.Rectangle.Left, (int)this.Rectangle.Top);
+        }
     }
 }
