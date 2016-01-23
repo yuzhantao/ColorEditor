@@ -10,7 +10,7 @@ namespace ColorEditorControl.Editor.EditorObjects.ContentHandle
         /// <param name="area"></param>
         /// <param name="pos"></param>
         /// <param name="content"></param>
-        /// <returns></returns>
-        void Input(EditorEditArea area,int pos,EditorContent content);
+        /// <returns>如果返回true，则不检查之后继承此接口的其他类</returns>
+        bool Input(EditorEditArea area,int pos,EditorContent content);
     }
 }

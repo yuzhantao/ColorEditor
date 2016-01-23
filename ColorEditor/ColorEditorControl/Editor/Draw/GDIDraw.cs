@@ -32,12 +32,6 @@ namespace ColorEditorControl.Editor.Draw
                 br,
                 new PointF(x, y)
                 );
-
-#if DEBUG
-            // 绘制字符边距
-            //SizeF size = this.GetDrawStringSize(txt, font);
-            //this.m_graphics.DrawRectangle(new Pen(Color.Red), x, y, size.Width, size.Height);
-#endif
         }
 
         public void DrawImage(Image img, float srcX, float srcY, float srcWidth, float srcHeight,float destX,float destY, float destWidth, float destHeight, int angle, IDrawEffect[] effects)
@@ -50,9 +44,9 @@ namespace ColorEditorControl.Editor.Draw
             throw new NotImplementedException();
         }
 
-        public void DrawRectangleLine(int width, int color, float x1, float y1, float x2, float y2, DrawLineStyle lineStyle, IDrawEffect[] effects)
+        public void DrawRectangleLine(int lineWidth, int color, float x, float y, float width, float height, DrawLineStyle lineStyle, IDrawEffect[] effects)
         {
-            throw new NotImplementedException();
+            this.m_graphics.DrawRectangle(new Pen(Color.FromArgb(color)), x, y, width, height);
         }
 
         public void FillRectangle(int color, float x, float y, float width, float height, IDrawEffect[] effects)

@@ -11,11 +11,13 @@ namespace ColorEditorControl.Editor.EditorObjects.ContentHandle
     /// </summary>
     class LeftKeyHandle : IContentHandle
     {
-        public void Input(EditorEditArea area, int pos, EditorContent content)
+        public bool Input(EditorEditArea area, int pos, EditorContent content)
         {
-            if (content == null || content.getText() != ((char)37).ToString()) return;
+            if (content == null || content.getText() != ((char)37).ToString()) return false;
 
             area.SelectIndex = Math.Max(0,pos - 1);
+
+            return false;
         }
     }
 }

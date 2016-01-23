@@ -8,14 +8,18 @@ namespace ColorEditorControl.Editor.EditorObjects.ContentHandle
     class ContentHandleContext : IContentHandle
     {
         private static List<IContentHandle> AllObjectHandleList;
-        private IContentHandle m_objectHandle;
 
-        public void Input(EditorEditArea area,int pos, EditorContent content)
+        public bool Input(EditorEditArea area,int pos, EditorContent content)
         {
             foreach(IContentHandle obj in this.GetAllObjectHandleList())
             {
-                obj.Input(area, pos, content);
+                if(obj.Input(area, pos, content))
+                {
+                    break;
+                }
             }
+
+            return false;
         }
 
         private List<IContentHandle> GetAllObjectHandleList()

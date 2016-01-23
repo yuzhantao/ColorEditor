@@ -6,14 +6,17 @@ using System.Threading.Tasks;
 
 namespace ColorEditorControl.Editor.EditorObjects.ContentHandle
 {
+    /// <summary>
+    /// 鼠标选择了一个区域的处理效果
+    /// </summary>
     class MouseSelectRectHandle : IContentHandle
     {
         private bool m_isMouseDown = false;             // 鼠标是否点下
         private int m_selectStartIndex = -1;            // 旋转开始的索引位置
             
-        public void Input(EditorEditArea area, int pos, EditorContent content)
+        public bool Input(EditorEditArea area, int pos, EditorContent content)
         {
-            if (content.GetType() != typeof(EditorMouse)) return;
+            if (content.GetType() != typeof(EditorMouse)) return false;
 
             EditorMouse mouse = (EditorMouse)content;
             switch (mouse.KeyType)
@@ -34,16 +37,25 @@ namespace ColorEditorControl.Editor.EditorObjects.ContentHandle
 
                     if (this.m_selectStartIndex < endIndex)
                     {
-                        area.SelectStart = this.m_selectStartIndex-1;
+                        area.SelectStart = this.m_selectStartIndex;
                         area.SelectEnd = endIndex + 1;
                     }else if(this.m_selectStartIndex > endIndex)
                     {
                         area.SelectEnd = this.m_selectStartIndex + 1;
-                        area.SelectStart = endIndex - 1;
+                        area.SelectStart = endIndex;
+                    }else if (this.m_selectStartIndex == endIndex)
+                    {
+                        area.SelectStart = this.m_selectStartIndex;
+                        area.SelectEnd = this.m_selectStartIndex;
                     }
-                    
+
+#if DEBUG
+                    Console.WriteLine(string.Format("select editor index:start={0}    end={1}", area.SelectStart, area.SelectEnd));
+#endif
                     break;
             }
+
+            return false;
         }
 
         /// <summary>

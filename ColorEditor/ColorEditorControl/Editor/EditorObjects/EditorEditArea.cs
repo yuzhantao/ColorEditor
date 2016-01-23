@@ -41,10 +41,10 @@ namespace ColorEditorControl.Editor.EditorObjects
         public int SelectEnd { get; set; }
 
         /// <summary>
-        /// 
+        /// 选择的背景色
         /// </summary>
         public int SelectBackgroundColor { get; set; }
-
+        
         #endregion
 
         private IDraw TempDraw;
@@ -54,6 +54,7 @@ namespace ColorEditorControl.Editor.EditorObjects
             this.ContentList = new List<EditorContent>();       // 初始化区域内容
             this.Caret = new EditorCaret(handle, caretBitmap);          // 设置光标
             this.Caret.Show();
+            this.SelectBackgroundColor = Color.FromArgb(150,Color.Gray).ToArgb();
         }
 
         public override void Draw(IDraw draw)
@@ -69,19 +70,28 @@ namespace ColorEditorControl.Editor.EditorObjects
             {
                 curIndex++;
 
-                // 绘制选择内容的背景色
-                if (curIndex > Math.Min(this.SelectStart, this.SelectEnd) && 
+                // 此判断是判断需要绘制的内容对象是否被选中
+                if (curIndex >= Math.Min(this.SelectStart, this.SelectEnd) && 
                     curIndex < Math.Max(this.SelectStart, this.SelectEnd))
                 {
-                    this.DrawBackground(draw, content, Color.FromArgb(99,Color.Blue).ToArgb());
+                    if (content.GetType() == typeof(EditorImage))
+                    {
+                        // 如果是图片，在选择状态下先画图片，再画选择的阴影
+                        content.Draw(draw);
+                        this.DrawBackground(draw, content, this.SelectBackgroundColor);
+                    }
+                    else
+                    {
+                        // 默认选中状态是先画背景阴影，再画内容
+                        this.DrawBackground(draw, content, this.SelectBackgroundColor);
+                        content.Draw(draw);
+                    }
                 }
-
-                content.Draw(draw);
-            }
-
-            foreach (EditorContent ojb in this.ContentList)
-            {
-                
+                else
+                {
+                    // 如果是没被选中的内容，则直接绘制对象。
+                    content.Draw(draw);
+                }
             }
         }
 
@@ -215,14 +225,8 @@ namespace ColorEditorControl.Editor.EditorObjects
                     curLineMaxHeight = 0;
                     for (int i = currentIndex; i < this.ContentList.Count(); i++)
                     {
-                        if (this.ContentList[i].GetType() == typeof(EditorImage))
-                        {
-                            string dd = "";
-                        }
-
                         curLineMaxHeight = Math.Max(curLineMaxHeight, this.ContentList[i].Rectangle.Height);
-
-
+                        
                         if(i==this.ContentList.Count()-1 || this.ContentList[i].getText() == "\r")
                         {
                             break;

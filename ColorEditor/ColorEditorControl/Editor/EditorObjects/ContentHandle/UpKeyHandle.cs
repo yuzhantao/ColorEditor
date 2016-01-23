@@ -8,11 +8,13 @@ namespace ColorEditorControl.Editor.EditorObjects.ContentHandle
 {
     class UpKeyHandle : IContentHandle
     {
-        public void Input(EditorEditArea area, int pos, EditorContent content)
+        public bool Input(EditorEditArea area, int pos, EditorContent content)
         {
-            if (content == null || content.getText() != ((char)38).ToString()) return;
+            if (content == null || content.getText() != ((char)38).ToString()) return false;
 
             this.EditorSelectIndexUpMove(area, content);        // 当按向上按钮时，编辑器的选择索引上移一行。
+
+            return false;
         }
 
         /// <summary>

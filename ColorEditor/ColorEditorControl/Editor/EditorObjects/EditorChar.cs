@@ -29,6 +29,13 @@ namespace ColorEditorControl.Editor.EditorObjects
                 this.Rectangle.Top,
                 0,
                 null);
+
+#if DEBUG
+            // 绘制字符边距
+            //draw.DrawRectangleLine(1, System.Drawing.Color.Red.ToArgb(), this.Rectangle.Left,
+            //    this.Rectangle.Top, this.Rectangle.Width, this.Rectangle.Height,
+            //    DrawLineStyle.Solid,null);
+#endif
         }
 
         public override string getText()

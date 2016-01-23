@@ -11,15 +11,17 @@ namespace ColorEditorControl.Editor.EditorObjects.ContentHandle
     /// </summary>
     class MouseDownHandle : IContentHandle
     {
-        public void Input(EditorEditArea area, int pos, EditorContent content)
+        public bool Input(EditorEditArea area, int pos, EditorContent content)
         {
-            if (content.GetType() != typeof(EditorMouse)) return;
+            if (content.GetType() != typeof(EditorMouse)) return false;
 
             EditorMouse mouse = (EditorMouse)content;
 
-            if (mouse.KeyType != EditorMouse.MouseKeyType.LeftDown && mouse.KeyType != EditorMouse.MouseKeyType.RightDown) return;
+            if (mouse.KeyType != EditorMouse.MouseKeyType.LeftDown && mouse.KeyType != EditorMouse.MouseKeyType.RightDown) return false;
 
             this.SetCaretPos(area, mouse.Rectangle.Left, mouse.Rectangle.Top);        // 设置光标位置
+
+            return false;
         }
 
         /// <summary>

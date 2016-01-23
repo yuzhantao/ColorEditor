@@ -39,13 +39,13 @@ namespace ColorEditorControl.Editor.Draw
             IDrawEffect[] effects);
 
         void DrawRectangleLine(
-            int width,
-            int color,
-            float x1,
-            float y1,
-            float x2,
-            float y2,
-            DrawLineStyle lineStyle,
+            int lineWidth, 
+            int color, 
+            float x, 
+            float y, 
+            float width, 
+            float height, 
+            DrawLineStyle lineStyle, 
             IDrawEffect[] effects);
 
         void FillRectangle(

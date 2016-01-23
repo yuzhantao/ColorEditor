@@ -8,12 +8,14 @@ namespace ColorEditorControl.Editor.EditorObjects.ContentHandle
 {
     class ImageHandle : IContentHandle
     {
-        public void Input(EditorEditArea area, int pos, EditorContent content)
+        public bool Input(EditorEditArea area, int pos, EditorContent content)
         {
-            if (content == null || content.GetType() != typeof(EditorImage)) return;
+            if (content == null || content.GetType() != typeof(EditorImage)) return false;
 
             area.ContentList.Insert(area.SelectIndex, content);
             area.SelectIndex = pos + 1;
+
+            return false;
         }
     }
 }

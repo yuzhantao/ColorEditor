@@ -214,7 +214,7 @@ namespace ColorEditorControl.Editor
         /// </summary>
         /// <param name="lParam"></param>
         /// <returns></returns>
-        public int GetXLparam(IntPtr lParam)
+        private int GetXLparam(IntPtr lParam)
         {
             return (lParam.ToInt32() & 0xffff);
         }
@@ -224,7 +224,7 @@ namespace ColorEditorControl.Editor
         /// </summary>
         /// <param name="lParam"></param>
         /// <returns></returns>
-        public int GetYLparam(IntPtr lParam)
+        private int GetYLparam(IntPtr lParam)
         {
             return (lParam.ToInt32() >> 16);
         }
