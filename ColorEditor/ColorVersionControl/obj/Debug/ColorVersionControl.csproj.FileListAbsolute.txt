@@ -1,0 +1,4 @@
+F:\projects\2016\color editor\current codes\ColorEditor\ColorVersionControl\bin\Debug\ColorVersionControl.dll
+F:\projects\2016\color editor\current codes\ColorEditor\ColorVersionControl\bin\Debug\ColorVersionControl.pdb
+F:\projects\2016\color editor\current codes\ColorEditor\ColorVersionControl\obj\Debug\ColorVersionControl.dll
+F:\projects\2016\color editor\current codes\ColorEditor\ColorVersionControl\obj\Debug\ColorVersionControl.pdb

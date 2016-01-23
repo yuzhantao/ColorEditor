@@ -32,6 +32,7 @@ namespace ColorEditorControl.Editor.EditorObjects.ContentHandle
                 AllObjectHandleList.Add(new UpKeyHandle());
                 AllObjectHandleList.Add(new DownKeyHandle());
                 AllObjectHandleList.Add(new ImageHandle());
+                AllObjectHandleList.Add(new MouseSelectRectHandle());
             }
 
             return AllObjectHandleList;

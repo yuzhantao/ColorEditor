@@ -49,11 +49,11 @@ namespace ColorEditorControl.Editor.Draw
             IDrawEffect[] effects);
 
         void FillRectangle(
-            int color,
-            float x1,
-            float y1,
-            float x2,
-            float y2,
+            int color, 
+            float x, 
+            float y, 
+            float width, 
+            float height,
             IDrawEffect[] effects);
     }
 }

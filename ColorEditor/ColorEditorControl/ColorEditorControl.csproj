@@ -59,6 +59,7 @@
     <Compile Include="Editor\EditorObjects\ContentHandle\ImageHandle.cs" />
     <Compile Include="Editor\EditorObjects\ContentHandle\LeftKeyHandle.cs" />
     <Compile Include="Editor\EditorObjects\ContentHandle\MouseDownHandle.cs" />
+    <Compile Include="Editor\EditorObjects\ContentHandle\MouseSelectRectHandle.cs" />
     <Compile Include="Editor\EditorObjects\ContentHandle\RightKeyHandle.cs" />
     <Compile Include="Editor\EditorObjects\ContentHandle\UpKeyHandle.cs" />
     <Compile Include="Editor\EditorObjects\EditorCaret.cs" />

@@ -15,21 +15,24 @@ namespace ColorEditorControl.Editor
     public partial class ColorEditor : UserControl
     {
         #region Win API
-        private const int WM_IME_CHAR = 0x0286;                         // 输入法中的内容
-        private const int WM_CHAR = 0x0102;                             // 字符内容
-        private const int WM_IME_SETCONTEXT = 0x0281;                   // 输入法的上下文
-        private const int WM_HSCROLL = 0x114;
-        private const int WM_VSCROLL = 0x115;
-        private const int SB_ENDSCROLL = 0x8;
-        private const int GCS_COMPSTR = 0x0008;
-        private int GCS_RESULTSTR = 0x0800;
-        private const int PM_REMOVE = 0x0001;                   
-        private const int WM_SYSCOMMAND = 0x0112;                       // 系统按键
-        private const int WM_KEYDOWN = 0x100;                           // 按键点下
-        private const int WM_KEYUP = 0x101;                             // 按键抬起
-        private const int WM_MOUSEDOWN = 0x0210;                        // 鼠标点下
-        private const int WM_MOUSEWHEEL = 0x020A;                       // 鼠标中轮滚动
-        private const int WM_LEFTMOUSEDOWN = 0x201;                     //定义了鼠标的左键点击消息
+        private const int WM_IME_CHAR =         0x0286;    // 输入法中的内容
+        private const int WM_CHAR =             0x0102;    // 字符内容
+        private const int WM_IME_SETCONTEXT =   0x0281;    // 输入法的上下文
+        private const int WM_HSCROLL =          0x114;
+        private const int WM_VSCROLL =          0x115;
+        private const int SB_ENDSCROLL =        0x8;
+        private const int GCS_COMPSTR =         0x0008;
+        private int GCS_RESULTSTR =             0x0800;
+        private const int PM_REMOVE =           0x0001;                   
+        private const int WM_SYSCOMMAND =       0x0112;    // 系统按键
+        private const int WM_KEYDOWN =          0x100;     // 按键点下
+        private const int WM_KEYUP =            0x101;     // 按键抬起
+        private const int WM_MOUSEMOVE =        0x200;     // 鼠标移动
+        private const int WM_MOUSEDOWN =        0x0210;    // 鼠标点下
+        private const int WM_MOUSEWHEEL =       0x020A;    // 鼠标中轮滚动
+        private const int WM_LBUTTONDOWN =      0x201;     // 定义了鼠标的左键点击消息
+        private const int WM_LBUTTONUP =        0x202;     // 鼠标左键抬起
+
         [DllImport("Imm32.dll")]
         private static extern IntPtr ImmGetContext(IntPtr hWnd);
 
@@ -95,10 +98,25 @@ namespace ColorEditorControl.Editor
                 case WM_IME_SETCONTEXT:
                     if (msg.WParam.ToInt32() == 1) ImmAssociateContext(Handle, m_pImmGetContext);
                     break;
-                case WM_LEFTMOUSEDOWN:
+                // 鼠标左键点下
+                case WM_LBUTTONDOWN:
                     int x = this.GetXLparam(msg.LParam);
                     int y = this.GetYLparam(msg.LParam);
-                    this.AddMouse(EditorMouse.MouseKeyType.Left, x, y);        // 添加按键到编辑器
+                    this.AddMouse(EditorMouse.MouseKeyType.LeftDown, x, y);        // 添加按键到编辑器
+                    this.Invalidate();
+                    break;
+                // 鼠标左键抬起
+                case WM_LBUTTONUP:
+                    int leftButtonUpX = this.GetXLparam(msg.LParam);
+                    int leftButtonUpY = this.GetYLparam(msg.LParam);
+                    this.AddMouse(EditorMouse.MouseKeyType.LeftUp, leftButtonUpX, leftButtonUpY); // 添加按键到编辑器
+                    this.Invalidate();
+                    break;
+                case WM_MOUSEMOVE:
+                    int mouseMoveX = this.GetXLparam(msg.LParam);
+                    int mouseMoveY = this.GetYLparam(msg.LParam);
+                    this.AddMouse(EditorMouse.MouseKeyType.Move, mouseMoveX, mouseMoveY); // 添加按键到编辑器
+                    this.Invalidate();
                     break;
                 // 处理接收到的字符
                 case WM_CHAR:

@@ -64,9 +64,24 @@ namespace ColorEditorControl.Editor.EditorObjects
                 this.SortContent();
             }
 
+            int curIndex = -1;
+            foreach (EditorContent content in this.ContentList)
+            {
+                curIndex++;
+
+                // 绘制选择内容的背景色
+                if (curIndex > Math.Min(this.SelectStart, this.SelectEnd) && 
+                    curIndex < Math.Max(this.SelectStart, this.SelectEnd))
+                {
+                    this.DrawBackground(draw, content, Color.FromArgb(99,Color.Blue).ToArgb());
+                }
+
+                content.Draw(draw);
+            }
+
             foreach (EditorContent ojb in this.ContentList)
             {
-                ojb.Draw(draw);
+                
             }
         }
 
@@ -238,7 +253,24 @@ namespace ColorEditorControl.Editor.EditorObjects
                 }
             }
         }
-        
+
+        /// <summary>
+        /// 绘制选择区域的背景色
+        /// </summary>
+        /// <param name="draw">用来绘制图像的设备</param>
+        /// <param name="content">内容</param>
+        /// <param name="color">背景颜色</param>
+        private void DrawBackground(IDraw draw,EditorContent content,int color)
+        {
+            draw.FillRectangle(
+                        color,
+                        content.Rectangle.Left,
+                        content.Rectangle.Top,
+                        content.Rectangle.Width,
+                        content.Rectangle.Height,
+                        null);
+        }
+
         /// <summary>
         /// 设置光标位置
         /// </summary>

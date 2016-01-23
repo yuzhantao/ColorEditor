@@ -30,14 +30,20 @@ namespace ColorEditorControl.Editor.EditorObjects
             string retText = string.Empty;
             switch (this.KeyType)
             {
-                case MouseKeyType.Left:
-                    retText = "MouseLeft";
+                case MouseKeyType.LeftUp:
+                    retText = "MouseLeftUp";
+                    break;
+                case MouseKeyType.LeftDown:
+                    retText = "MouseLeftDown";
                     break;
                 case MouseKeyType.Middle:
                     retText = "MouseMiddle";
                     break;
-                case MouseKeyType.Right:
-                    retText = "MouseRight";
+                case MouseKeyType.RightUp:
+                    retText = "MouseRightUp";
+                    break;
+                case MouseKeyType.RightDown:
+                    retText = "MouseRightDown";
                     break;
             }
 
@@ -49,9 +55,12 @@ namespace ColorEditorControl.Editor.EditorObjects
         /// </summary>
         public enum MouseKeyType
         {
-            Left,
+            Move,
+            LeftUp,
+            LeftDown,
             Middle,
-            Right
+            RightUp,
+            RightDown
         }
     }
 }

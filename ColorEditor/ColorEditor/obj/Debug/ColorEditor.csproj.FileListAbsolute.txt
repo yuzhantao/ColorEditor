@@ -1,11 +1,11 @@
-F:\projects\2016\color editor\current codes\ColorEditor\ColorEditor\bin\Debug\ColorEditor.exe
-F:\projects\2016\color editor\current codes\ColorEditor\ColorEditor\bin\Debug\ColorEditor.exe.config
-F:\projects\2016\color editor\current codes\ColorEditor\ColorEditor\bin\Debug\ColorEditorControl.dll
-F:\projects\2016\color editor\current codes\ColorEditor\ColorEditor\bin\Debug\ColorEditorControl.pdb
-F:\projects\2016\color editor\current codes\ColorEditor\ColorEditor\obj\Debug\ColorEditor.csprojResolveAssemblyReference.cache
 F:\projects\2016\color editor\current codes\ColorEditor\ColorEditor\obj\Debug\ColorEditor.Form1.resources
 F:\projects\2016\color editor\current codes\ColorEditor\ColorEditor\obj\Debug\ColorEditor.Properties.Resources.resources
 F:\projects\2016\color editor\current codes\ColorEditor\ColorEditor\obj\Debug\ColorEditor.csproj.GenerateResource.Cache
+F:\projects\2016\color editor\current codes\ColorEditor\ColorEditor\bin\Debug\ColorEditor.exe.config
+F:\projects\2016\color editor\current codes\ColorEditor\ColorEditor\bin\Debug\ColorEditor.exe
+F:\projects\2016\color editor\current codes\ColorEditor\ColorEditor\bin\Debug\ColorEditor.pdb
+F:\projects\2016\color editor\current codes\ColorEditor\ColorEditor\bin\Debug\ColorEditorControl.dll
+F:\projects\2016\color editor\current codes\ColorEditor\ColorEditor\bin\Debug\ColorEditorControl.pdb
+F:\projects\2016\color editor\current codes\ColorEditor\ColorEditor\obj\Debug\ColorEditor.csprojResolveAssemblyReference.cache
 F:\projects\2016\color editor\current codes\ColorEditor\ColorEditor\obj\Debug\ColorEditor.exe
 F:\projects\2016\color editor\current codes\ColorEditor\ColorEditor\obj\Debug\ColorEditor.pdb
-F:\projects\2016\color editor\current codes\ColorEditor\ColorEditor\bin\Debug\ColorEditor.pdb

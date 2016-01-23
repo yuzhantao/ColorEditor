@@ -55,9 +55,9 @@ namespace ColorEditorControl.Editor.Draw
             throw new NotImplementedException();
         }
 
-        public void FillRectangle(int color, float x1, float y1, float x2, float y2, IDrawEffect[] effects)
+        public void FillRectangle(int color, float x, float y, float width, float height, IDrawEffect[] effects)
         {
-            throw new NotImplementedException();
+            this.m_graphics.FillRectangle(new SolidBrush(Color.FromArgb(color)), x, y, width, height);
         }
 
         public SizeF GetDrawStringSize(string str, DrawFont font)

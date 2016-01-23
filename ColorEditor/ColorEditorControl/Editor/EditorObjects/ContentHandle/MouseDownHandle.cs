@@ -13,10 +13,13 @@ namespace ColorEditorControl.Editor.EditorObjects.ContentHandle
     {
         public void Input(EditorEditArea area, int pos, EditorContent content)
         {
-            if (content.GetType() == typeof(EditorMouse))
-            {
-                this.SetCaretPos(area,content.Rectangle.Left, content.Rectangle.Top);        // 设置光标位置
-            }
+            if (content.GetType() != typeof(EditorMouse)) return;
+
+            EditorMouse mouse = (EditorMouse)content;
+
+            if (mouse.KeyType != EditorMouse.MouseKeyType.LeftDown && mouse.KeyType != EditorMouse.MouseKeyType.RightDown) return;
+
+            this.SetCaretPos(area, mouse.Rectangle.Left, mouse.Rectangle.Top);        // 设置光标位置
         }
 
         /// <summary>
