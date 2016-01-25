@@ -42,6 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Code\IShader.cs" />
+    <Compile Include="Code\Lexer.cs" />
+    <Compile Include="Code\Token.cs" />
     <Compile Include="Editor\ColorEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -65,6 +68,8 @@
     <Compile Include="Editor\EditorObjects\EditorCaret.cs" />
     <Compile Include="Editor\EditorObjects\EditorChar.cs" />
     <Compile Include="Editor\EditorObjects\EditorContent.cs" />
+    <Compile Include="Editor\EditorObjects\EditorExpandArea.cs" />
+    <Compile Include="Editor\EditorObjects\EditorExpandNode.cs" />
     <Compile Include="Editor\EditorObjects\EditorImage.cs" />
     <Compile Include="Editor\EditorObjects\EditorKey.cs" />
     <Compile Include="Editor\EditorObjects\EditorLine.cs" />
@@ -77,6 +82,7 @@
     <Compile Include="Editor\IEditorViewPlug.cs" />
     <Compile Include="Editor\EditorView.cs" />
     <Compile Include="Editor\EditorObjects\EditorObject.cs" />
+    <Compile Include="Editor\IShader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

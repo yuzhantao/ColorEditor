@@ -44,7 +44,12 @@ namespace ColorEditorControl.Editor.EditorObjects
         /// 选择的背景色
         /// </summary>
         public int SelectBackgroundColor { get; set; }
-        
+
+        /// <summary>
+        /// 首行缩进的距离
+        /// </summary>
+        public float FirstLineIndentSpace { get; set; }
+
         #endregion
 
         private IDraw TempDraw;
@@ -55,6 +60,7 @@ namespace ColorEditorControl.Editor.EditorObjects
             this.Caret = new EditorCaret(handle, caretBitmap);          // 设置光标
             this.Caret.Show();
             this.SelectBackgroundColor = Color.FromArgb(150,Color.Gray).ToArgb();
+            this.FirstLineIndentSpace = 20;
         }
 
         public override void Draw(IDraw draw)
@@ -206,7 +212,7 @@ namespace ColorEditorControl.Editor.EditorObjects
             float minLeft = this.Rectangle.Left + this.Rectangle.MarginLeft;
             float minTop = this.Rectangle.Top + this.Rectangle.MarginTop;
 
-            float curLeft = minLeft;
+            float curLeft = minLeft + this.FirstLineIndentSpace;
             float curTop = minTop;
             float curLineMaxHeight = 0;                  // 当前行最大高度
 
@@ -219,7 +225,7 @@ namespace ColorEditorControl.Editor.EditorObjects
                 // 计算当前行的最大高度
                 if (curLineMaxHeight == 0)
                 {
-                    curLeft = minLeft;
+                    curLeft = minLeft+this.FirstLineIndentSpace;
                     curTop += curLineMaxHeight;
 
                     curLineMaxHeight = 0;
@@ -251,7 +257,7 @@ namespace ColorEditorControl.Editor.EditorObjects
 
                 if ("\r" == content.getText())
                 {
-                    curLeft = minLeft;                                  // 计算换行后最左边的坐标
+                    curLeft = minLeft+this.FirstLineIndentSpace;        // 计算换行后最左边的坐标
                     curTop += curLineMaxHeight;                         // 计算回车换行后的top坐标值
                     curLineMaxHeight = 0;
                 }
@@ -286,7 +292,7 @@ namespace ColorEditorControl.Editor.EditorObjects
                 EditorContent curContent = this.ContentList[this.SelectIndex - 1];
                 if ("\r" == curContent.getText())
                 {
-                    this.Caret.Rectangle.Left = minLeft;
+                    this.Caret.Rectangle.Left = minLeft+this.FirstLineIndentSpace;
                     this.Caret.Rectangle.Top = curContent.Rectangle.Top + curContent.Rectangle.Height;
                 }
                 else

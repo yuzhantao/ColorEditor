@@ -21,6 +21,11 @@ namespace ColorEditorControl.Editor.EditorObjects
         public EditorObjectRectangle Rectangle { get; set; }
 
         /// <summary>
+        /// 是否显示
+        /// </summary>
+        public bool Visible { get; set; }
+
+        /// <summary>
         /// 绘制编辑器对象
         /// </summary>
         public abstract void Draw(IDraw draw);

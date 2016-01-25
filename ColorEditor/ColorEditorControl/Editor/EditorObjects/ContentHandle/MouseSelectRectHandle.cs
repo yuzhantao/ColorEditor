@@ -48,7 +48,8 @@ namespace ColorEditorControl.Editor.EditorObjects.ContentHandle
                         area.SelectStart = this.m_selectStartIndex;
                         area.SelectEnd = this.m_selectStartIndex;
                     }
-
+                    
+                    area.Caret.Hide();                           // 隐藏光标
 #if DEBUG
                     Console.WriteLine(string.Format("select editor index:start={0}    end={1}", area.SelectStart, area.SelectEnd));
 #endif
